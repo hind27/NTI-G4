@@ -70,23 +70,39 @@ app.get('/showAll',(req, res)=>
 
 app.get('/deletetask/:_id' , (req, res) => {
     db= MDBConnection((db)=>{
-        db.collection('newCollection').deleteOne(
-            { _id:{$exists:true} } )
-     .then((res)=>{console.log(res)})
-     .catch((err)=>console.log(err))
+        db.collection('newCollection').deleteOne({ _id:{$exists:true}},((err, result)=>{
+                if(err)  console.log(error)
+                else console.log('delete')
+                res.redirect('/showAll')
+   
+            })
+        )
     })
 })
 
 app.get('/edittask/:_id' , (req, res) => {
-    db= MDBConnection((db)=>{
-        db.collection('newCollection').updateone(
-                {_id:{$exists:true}},
-                {$inc:{x:1}} )
-                .then((res)=>{console.log(res)})
-                .catch((err)=>console.log(err))
-            
+        db= MDBConnection((db)=>{
+            db.collection('newCollection').findOne({id:{$exists:true}},((err, result)=>{
+                if(err)  console.log(error)
+                else console.log('Edit task', result)
+                  res.render('home',{data:result})
+            })
+        )
     })
 })
+ 
 
+app.post('/editTask/:id', (req,res)=>{
+
+    db= MDBConnection((db)=>{
+       var newvalues = { $set: {title:req.body.title,select:req.body.select ,content:req.body.content } };
+       db.collection('newCollection').updateOne({_id:{$exists:true}},newvalues,((err, result)=>{
+              if(err) { console.log(error)}
+              else{ console.log("edited sucess")
+                 res.redirect('/showAll')}
+          })
+    )
+    })
+})
 
 app.listen(PORT)
