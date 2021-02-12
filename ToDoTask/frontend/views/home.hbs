@@ -1,0 +1,30 @@
+      
+{{>header}}
+<section id="cover" class="min-vh-100">
+    <div id="cover-caption">
+        <div class="container">
+            <div class="row text-white">
+                <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+                    <h1 class="display-4 py-2 text-truncate">Todo list</h1>
+                    <div class="px-2">
+                        <form action="/addtask" method="POST" class="justify-content-center">
+                            <div class="form-group">
+                                <label class="sr-only">Add Task</label>
+                                <input type="text" class="form-control" placeholder=" Task Title"  name="title">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">content</label>
+                                <input type="text" class="form-control" placeholder=" Task Content" name ="content">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg m-5">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ {{>footer}}
+
+
+    

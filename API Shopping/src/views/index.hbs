@@ -1,0 +1,25 @@
+<div class="container">      
+    <div class="row">
+    <br>
+    <a href="/allUser" class="btn btn-primary">uses</a>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>age</th>
+            <th>email</th>
+            
+        </tr>
+        </thead>
+        {{#each user}}
+          <tr>
+            <td>{{this.number}}</td> 
+            <td>{{this.age}}</td>
+            <td>{{this.email}}</td>
+            <td><a href="/persona/edit/{{this._id}}">Modificar</a></td> 
+            <td><a href="/persona/delete/{{this._id}}">Eliminar</a></td> 
+          </tr>          
+       {{/each}}   
+      </table>
+    </div>
+</div>
