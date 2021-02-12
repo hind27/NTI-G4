@@ -98,8 +98,8 @@ app.post('/editTask/:id', (req,res)=>{
        var newvalues = { $set: {title:req.body.title,select:req.body.select ,content:req.body.content } };
        db.collection('newCollection').updateOne({_id:{$exists:true}},newvalues,((err, result)=>{
               if(err) { console.log(error)}
-              else{ console.log("edited sucess")
-                 res.redirect('/showAll')}
+              else console.log("edited sucess")
+                 res.redirect('/showAll')
           })
     )
     })
